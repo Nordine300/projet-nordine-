@@ -21,7 +21,7 @@
     <div id="home" class="page active">
         <section class="hero">
             <div class="hero-content">
-                <h1>Bienvenue chez coucoudurd</h1>
+                <h1>Bienvenue chez MMAFOOT</h1>
                 <p>Votre destination pour les maillots des plus grands clubs européens</p>
                 <button class="btn" onclick="showPage('catalog')">Découvrir la Collection</button>
             </div>
