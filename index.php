@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MMAfoot - Maillots de Footballnordine</title>
+    <title>MMAfoot - Maillots de Football</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
     <div id="home" class="page active">
         <section class="hero">
             <div class="hero-content">
-                <h1>Bienvenue chez MMAFOOT</h1>
+                <h1>Bienvenue chez MMAFOOTnono</h1>
                 <p>Votre destination pour les maillots des plus grands clubs européens</p>
                 <button class="btn" onclick="showPage('catalog')">Découvrir la Collection</button>
             </div>
