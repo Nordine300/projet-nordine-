@@ -1,107 +1,652 @@
-/* DESIGN LUXE & COLLECTION */
+/* ============================================================
+   MMAfoot Archives — style.css
+   ============================================================ */
+
+/* ── Variables ── */
 :root {
-    --gold: #d4af37;
-    --dark: #1a1a1a;
-    --gray: #f9f9f9;
+  --gold:   #c9a84c;
+  --gold-l: #e8c97a;
+  --dark:   #0d0d0d;
+  --cream:  #faf7f2;
+  --border: #e0d8cc;
+  --gray:   #888;
 }
 
-* { margin:0; padding:0; box-sizing: border-box; }
-
+/* ── Reset ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-    font-family: 'Georgia', serif; /* Plus élégant pour de la collection */
-    background: var(--gray);
-    color: #333;
+  font-family: 'Cormorant Garamond', serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
 }
 
-/* NAVIGATION */
+/* ── Système de pages ── */
+.page { display: none; }
+.page.active { display: block; }
+#login.active, #register.active, #forgot.active { display: flex; }
+#login, #register, #forgot {
+  min-height: 90vh;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+}
+
+/* ── Navigation ── */
 nav {
-    background: var(--dark);
-    color: white;
-    padding: 1.5rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  background: var(--dark);
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+  border-bottom: 1px solid #222;
 }
-
-.logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
-.logo .badge { font-size: 0.6rem; background: var(--gold); padding: 2px 5px; color: var(--dark); vertical-align: top; }
-
-.menu { display: flex; list-style: none; gap: 30px; }
-.menu a { color: white; text-decoration: none; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo .badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .55rem;
+  background: var(--gold);
+  padding: 3px 7px;
+  color: var(--dark);
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  align-items: center;
+}
+.menu a {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #aaa;
+  text-decoration: none;
+  font-size: .73rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .3s;
+}
 .menu a:hover { color: var(--gold); }
+.btn-nav {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--gold);
+  color: var(--dark) !important;
+  padding: 8px 18px;
+  font-size: .7rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background .3s;
+}
+.btn-nav:hover { background: var(--gold-l); }
 
-/* HERO */
+/* ── Hero ── */
 .hero {
-    height: 80vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1600');
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+  height: 92vh;
+  background: linear-gradient(135deg, rgba(0,0,0,.88), rgba(0,0,0,.5)),
+              url('https://images.unsplash.com/photo-1528928441742-b4bf7a2f4297?w=1800&q=90') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(transparent, var(--cream));
+}
+.hero-content { position: relative; z-index: 1; max-width: 720px; padding: 0 20px; }
+
+/* ── Typographie générique ── */
+.eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .7rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero p {
+  font-size: 1.12rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Boutons ── */
+.btn-primary {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 14px 38px;
+  border: none;
+  cursor: pointer;
+  font-size: .76rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all .3s;
+}
+.btn-primary:hover { background: var(--gold-l); transform: translateY(-2px); }
+
+.btn-outline {
+  font-family: 'Josefin Sans', sans-serif;
+  background: transparent;
+  color: #fff;
+  padding: 14px 38px;
+  border: 1px solid rgba(255,255,255,.4);
+  cursor: pointer;
+  font-size: .76rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all .3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Stats bar ── */
+.stats-bar { background: var(--dark); display: flex; justify-content: center; }
+.stat-item {
+  text-align: center;
+  padding: 26px 45px;
+  border-right: 1px solid #1e1e1e;
+  flex: 1;
+  max-width: 230px;
+}
+.stat-item:last-child { border-right: none; }
+.stat-number { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--gold); display: block; }
+.stat-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .6rem;
+  letter-spacing: 2px;
+  color: #555;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
 }
 
-.hero h1 { font-size: 4rem; margin-bottom: 20px; }
+/* ── Catalogue header ── */
+.catalog-header { text-align: center; padding: 70px 5% 40px; }
+.catalog-header h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-top: 10px; }
 
-/* CATALOGUE */
-.section-title { padding: 40px 5% 20px; border-bottom: 1px solid #ddd; margin: 0 5%; }
-
-.filter-section { text-align: center; padding: 30px; background: white; }
-.filter-btn { padding: 10px 20px; margin: 5px; border: 1px solid #ccc; background: none; cursor: pointer; transition: 0.3s; }
-.filter-btn.active, .filter-btn:hover { background: var(--dark); color: white; }
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 40px 5%;
+/* ── Filtres ── */
+.filter-bar { display: flex; justify-content: center; gap: 5px; padding: 10px 5% 42px; flex-wrap: wrap; }
+.filter-btn {
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 9px 22px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-size: .68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all .3s;
+  color: var(--gray);
 }
+.filter-btn:hover, .filter-btn.active { background: var(--dark); color: #fff; border-color: var(--dark); }
+
+/* ── Sections catalogue ── */
+.catalog-section { padding: 0 5% 55px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.section-header h3 { font-family: 'Playfair Display', serif; font-size: 1.65rem; }
+.section-line { flex: 1; height: 1px; background: var(--border); }
+.section-count { font-family: 'Josefin Sans', sans-serif; font-size: .65rem; letter-spacing: 2px; color: var(--gray); }
+
+/* ── Grille produits ── */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
 
 .product-card {
-    background: white;
-    padding: 15px;
-    border: 1px solid #eee;
-    transition: 0.4s;
+  background: #fff;
+  border: 1px solid var(--border);
+  transition: all .4s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(0,0,0,.11); }
+
+.card-badge {
+  position: absolute;
+  top: 13px; left: 13px;
+  z-index: 2;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .57rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  font-weight: 600;
+}
+.badge-rare     { background: var(--gold); color: var(--dark); }
+.badge-unique   { background: var(--dark); color: #fff; }
+.badge-certified{ background: #2d5a27; color: #fff; }
+.badge-museum   { background: #5a2d2d; color: #fff; }
+
+.img-container { height: 290px; overflow: hidden; background: #f0ede6; position: relative; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .6s; }
+.product-card:hover .img-container img { transform: scale(1.07); }
+
+.img-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .3s;
+}
+.product-card:hover .img-overlay { background: rgba(0,0,0,.2); }
+.view-hint {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .63rem;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity .3s;
+  border: 1px solid rgba(255,255,255,.6);
+  padding: 7px 15px;
+}
+.product-card:hover .view-hint { opacity: 1; }
+
+.product-info { padding: 18px 16px; }
+.product-era {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .6rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+.product-info h3 { font-family: 'Playfair Display', serif; font-size: 1.08rem; margin-bottom: 6px; }
+.product-info p  { font-size: .86rem; color: var(--gray); margin-bottom: 13px; line-height: 1.55; font-weight: 300; }
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.product-status {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .58rem;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.btn-expertiser {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--dark);
+  color: #fff;
+  padding: 7px 14px;
+  border: none;
+  cursor: pointer;
+  font-size: .63rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background .3s;
+}
+.btn-expertiser:hover { background: var(--gold); color: var(--dark); }
+
+/* ── Modal maillot ── */
+.jmodal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.88);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.jmodal-overlay.open { display: flex; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.jmodal-box {
+  background: #fff;
+  width: 98%;
+  max-width: 880px;
+  max-height: 94vh;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeUp .3s ease;
+}
+.jmodal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none;
+  font-size: 1.4rem; cursor: pointer;
+  color: var(--gray); z-index: 10;
+}
+.jmodal-grid { display: grid; grid-template-columns: 1.05fr 1fr; }
+.jmodal-gallery { background: #f0ede6; position: relative; }
+.jmodal-main-img { width: 100%; height: 420px; object-fit: cover; object-position: center top; display: block; }
+.jmodal-thumbs { display: flex; gap: 7px; padding: 10px; background: #e8e2d8; }
+.jmodal-thumb {
+  width: 66px; height: 66px;
+  object-fit: cover; object-position: center top;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border .2s;
+  opacity: .65;
+}
+.jmodal-thumb.active, .jmodal-thumb:hover { border-color: var(--gold); opacity: 1; }
+.jmodal-info { padding: 36px 30px; display: flex; flex-direction: column; overflow-y: auto; }
+.jmodal-era {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .62rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.jmodal-info h2 { font-family: 'Playfair Display', serif; font-size: 1.65rem; margin-bottom: 8px; line-height: 1.2; }
+.jmodal-desc { font-size: .94rem; color: var(--gray); line-height: 1.72; margin-bottom: 18px; font-weight: 300; }
+.jmodal-specs { background: var(--cream); padding: 14px; margin-bottom: 18px; border-left: 3px solid var(--gold); }
+.jmodal-specs p { font-size: .83rem; margin-bottom: 5px; color: #555; }
+.jmodal-specs strong { color: var(--dark); }
+.jmodal-divider { height: 1px; background: var(--border); margin: 15px 0; }
+.jmodal-info h4 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .62rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+.expertise-fields { display: grid; gap: 10px; }
+.expertise-fields input,
+.expertise-fields textarea,
+.expertise-fields select {
+  width: 100%; padding: 10px 13px;
+  border: 1px solid var(--border);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .93rem;
+  background: var(--cream);
+  outline: none;
+  transition: border .3s;
+}
+.expertise-fields input:focus,
+.expertise-fields textarea:focus,
+.expertise-fields select:focus { border-color: var(--gold); }
+.expertise-fields textarea { height: 72px; resize: none; }
+
+/* ── Auth (connexion / inscription) ── */
+.auth-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 900px;
+  width: 90%;
+  box-shadow: 0 28px 75px rgba(0,0,0,.14);
+  min-height: 540px;
+}
+.auth-side {
+  background: var(--dark);
+  padding: 50px 42px;
+  display: flex; flex-direction: column; justify-content: center;
+  color: #fff;
+  position: relative; overflow: hidden;
+}
+.auth-side::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(201,168,76,.13);
+  border-radius: 50%;
+}
+.auth-side::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -30px;
+  width: 250px; height: 250px;
+  border: 1px solid rgba(201,168,76,.07);
+  border-radius: 50%;
+}
+.auth-side .eyebrow { color: var(--gold); margin-bottom: 15px; }
+.auth-side h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; margin-bottom: 15px; line-height: 1.25; }
+.auth-side > p { color: rgba(255,255,255,.45); font-size: .9rem; line-height: 1.7; }
+.auth-features { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+.auth-feature { display: flex; align-items: center; gap: 11px; font-size: .86rem; color: rgba(255,255,255,.62); }
+.auth-feature .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+.auth-form { background: #fff; padding: 50px 42px; display: flex; flex-direction: column; justify-content: center; }
+.auth-form h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; margin-bottom: 5px; }
+.auth-form .subtitle { font-size: .88rem; color: var(--gray); margin-bottom: 26px; }
+
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .6rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gray);
+  display: block; margin-bottom: 6px;
+}
+.form-group input, .form-group select {
+  width: 100%; padding: 11px 13px;
+  border: 1px solid var(--border);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .97rem; background: var(--cream);
+  outline: none; transition: border .3s;
+}
+.form-group input:focus, .form-group select:focus { border-color: var(--gold); background: #fff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+
+.btn-auth {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--gold); color: var(--dark);
+  padding: 13px; border: none; cursor: pointer;
+  font-size: .71rem; letter-spacing: 3px; font-weight: 600;
+  text-transform: uppercase; width: 100%; margin-top: 6px;
+  transition: background .3s;
+}
+.btn-auth:hover { background: var(--gold-l); }
+.btn-auth:disabled { opacity: .6; cursor: not-allowed; }
+
+.auth-switch { text-align: center; margin-top: 15px; font-size: .86rem; color: var(--gray); }
+.auth-switch a { color: var(--dark); font-weight: 600; cursor: pointer; text-decoration: underline; }
+
+.error-msg   { font-family: 'Josefin Sans', sans-serif; font-size: .63rem; color: #c0392b; letter-spacing: 1px; margin-top: 4px; display: none; }
+.error-msg.show { display: block; }
+.success-msg {
+  background: #f0faf0; border: 1px solid #2d5a27; color: #2d5a27;
+  padding: 10px 13px;
+  font-family: 'Josefin Sans', sans-serif; font-size: .68rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  display: none; margin-bottom: 13px;
+}
+.success-msg.show { display: block; }
+
+.checkbox-group { display: flex; align-items: flex-start; gap: 9px; }
+.checkbox-group input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: var(--gold); }
+.checkbox-group label {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: .88rem;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  line-height: 1.5; color: #555;
 }
 
-.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+/* ── Captcha ── */
+.captcha-box {
+  border: 1px solid var(--border); background: #fafafa;
+  padding: 14px; display: flex; align-items: center; gap: 14px;
+  margin-bottom: 12px; cursor: pointer; user-select: none;
+}
+.captcha-check {
+  width: 20px; height: 20px;
+  border: 2px solid #bbb;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .25s; flex-shrink: 0; border-radius: 2px;
+}
+.captcha-check.checked { border-color: var(--gold); background: var(--gold); }
+.captcha-check .tick   { display: none; color: #fff; font-size: .85rem; font-weight: bold; }
+.captcha-check.checked .tick { display: block; }
+.captcha-label { font-family: 'Josefin Sans', sans-serif; font-size: .68rem; letter-spacing: 1px; color: #555; flex: 1; }
+.captcha-logo  { font-family: 'Josefin Sans', sans-serif; font-size: .52rem; color: #aaa; text-align: center; line-height: 1.4; }
 
-.img-container { height: 350px; overflow: hidden; background: #f0f0f0; }
-.img-container img { width: 100%; height: 100%; object-fit: cover; }
+/* ── Mot de passe oublié ── */
+.forgot-wrapper {
+  background: #fff; max-width: 490px; width: 90%;
+  box-shadow: 0 28px 75px rgba(0,0,0,.12); padding: 52px 48px;
+}
+.forgot-wrapper h3 { font-family: 'Playfair Display', serif; font-size: 1.65rem; margin-bottom: 7px; }
+.forgot-wrapper p  { color: var(--gray); font-size: .9rem; line-height: 1.7; margin-bottom: 25px; }
 
-.product-info { padding: 20px 0; text-align: center; }
-.product-info h3 { font-size: 1.2rem; margin-bottom: 10px; }
-.product-info p { font-size: 0.85rem; color: #777; margin-bottom: 15px; }
+/* ── À Propos ── */
+.about-hero {
+  height: 48vh;
+  background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
+              url('https://images.unsplash.com/photo-1434648957308-5e6a859697e8?w=1600&q=80') center/cover;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; color: #fff;
+}
+.about-hero h1 { font-family: 'Playfair Display', serif; font-size: 3.3rem; font-weight: 900; margin-top: 12px; }
+.about-body { max-width: 830px; margin: 0 auto; padding: 65px 5%; }
+.about-body h2 { font-family: 'Playfair Display', serif; font-size: 2.1rem; margin: 38px 0 16px; }
+.about-body p  { font-size: 1.02rem; color: #555; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+.about-team { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 45px; }
+.team-card  { background: #fff; border: 1px solid var(--border); padding: 28px; text-align: center; }
+.team-avatar {
+  width: 65px; height: 65px; background: var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark);
+  font-weight: 900; margin: 0 auto 13px;
+}
+.team-card h4   { font-family: 'Playfair Display', serif; font-size: 1.08rem; margin-bottom: 4px; }
+.team-card .role {
+  font-family: 'Josefin Sans', sans-serif; font-size: .6rem;
+  letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+.team-card p { font-size: .86rem; color: var(--gray); line-height: 1.6; }
+.about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 25px; }
+.value-card { border-left: 3px solid var(--gold); padding: 18px 22px; background: #fff; }
+.value-card h4 { font-family: 'Playfair Display', serif; font-size: 1.08rem; margin-bottom: 7px; }
+.value-card p  { font-size: .88rem; color: var(--gray); line-height: 1.6; }
 
-.status { display: block; font-size: 0.7rem; font-weight: bold; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; }
+/* ── Profil ── */
+.profil-hero { background: var(--dark); color: #fff; padding: 50px 5%; display: flex; align-items: center; gap: 32px; }
+.avatar {
+  width: 82px; height: 82px; background: var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.8rem;
+  color: var(--dark); font-weight: 900; flex-shrink: 0;
+}
+.profil-info .eyebrow { color: var(--gold); margin-bottom: 7px; }
+.profil-info h2 { font-family: 'Playfair Display', serif; font-size: 1.85rem; }
+.profil-body  { padding: 42px 5%; }
+.profil-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+.profil-stat  { background: #fff; border: 1px solid var(--border); padding: 20px; text-align: center; }
+.profil-stat .num { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--gold); display: block; }
+.profil-stat .lbl { font-family: 'Josefin Sans', sans-serif; font-size: .6rem; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; }
 
-/* BOUTONS */
-.btn-gold {
-    background: var(--gold);
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+/* ── Footer ── */
+footer { background: var(--dark); color: #fff; padding: 55px 5% 26px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 38px; margin-bottom: 42px; }
+.footer-brand .logo-text { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 900; letter-spacing: 3px; color: #fff; margin-bottom: 12px; }
+.footer-brand p { font-size: .86rem; color: #555; line-height: 1.7; }
+.footer-col h4  { font-family: 'Josefin Sans', sans-serif; font-size: .63rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.footer-col ul  { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; font-size: .86rem; color: #555; cursor: pointer; transition: color .3s; }
+.footer-col ul li:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid #1a1a1a; padding-top: 20px; display: flex; justify-content: space-between; }
+.footer-bottom p { font-family: 'Josefin Sans', sans-serif; font-size: .6rem; letter-spacing: 2px; color: #333; text-transform: uppercase; }
+
+/* ── Aperçu email ── */
+.email-preview { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.82); z-index: 9000; align-items: center; justify-content: center; }
+.email-preview.open { display: flex; }
+.email-box { background: #fff; max-width: 590px; width: 95%; border-radius: 2px; overflow: hidden; box-shadow: 0 28px 75px rgba(0,0,0,.35); }
+.email-topbar { background: #1e1e2e; padding: 11px 18px; display: flex; align-items: center; gap: 7px; }
+.email-dot { width: 11px; height: 11px; border-radius: 50%; }
+.email-header { background: var(--dark); padding: 28px; color: #fff; text-align: center; }
+.email-header .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 3px; }
+.email-header .badge-gold { color: var(--gold); }
+.email-body { padding: 32px 38px; }
+.email-body h2 { font-family: 'Playfair Display', serif; font-size: 1.45rem; margin-bottom: 13px; color: var(--dark); }
+.email-body p  { font-size: .92rem; color: #555; line-height: 1.75; margin-bottom: 13px; }
+.email-cta {
+  display: block; margin: 22px auto;
+  background: var(--gold); color: var(--dark);
+  padding: 12px 32px;
+  font-family: 'Josefin Sans', sans-serif; font-size: .72rem;
+  letter-spacing: 3px; font-weight: 600; text-align: center;
+  border: none; cursor: pointer; text-transform: uppercase;
+  transition: background .3s; text-decoration: none;
+}
+.email-footer-bar {
+  background: #f5f5f5; padding: 18px 38px; text-align: center;
+  font-family: 'Josefin Sans', sans-serif; font-size: .6rem;
+  letter-spacing: 1.5px; color: #aaa; text-transform: uppercase;
+}
+.email-close-btn {
+  display: block; margin: 0 auto 18px;
+  background: var(--dark); color: #fff; border: none;
+  padding: 10px 26px;
+  font-family: 'Josefin Sans', sans-serif; font-size: .68rem;
+  letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
 }
 
-.btn-gold:hover { background: #b8962d; }
-
-.btn-info {
-    width: 100%;
-    padding: 10px;
-    background: var(--dark);
-    color: white;
-    border: none;
-    cursor: pointer;
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 26px; right: 26px;
+  background: var(--dark); color: #fff;
+  padding: 13px 22px;
+  font-family: 'Josefin Sans', sans-serif; font-size: .7rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  z-index: 9999;
+  transform: translateY(100px); opacity: 0;
+  transition: all .4s;
+  border-left: 3px solid var(--gold);
 }
+.toast.show { transform: translateY(0); opacity: 1; }
 
-/* LOGIN */
-.auth-container { height: 80vh; display: flex; align-items: center; justify-content: center; }
-.auth-box { background: white; padding: 40px; width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center; }
-.auth-box input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; }
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero h1               { font-size: 2.4rem; }
+  .auth-wrapper          { grid-template-columns: 1fr; }
+  .auth-side             { display: none; }
+  .footer-grid           { grid-template-columns: 1fr; }
+  .stats-bar             { flex-wrap: wrap; }
+  .profil-grid           { grid-template-columns: 1fr 1fr; }
+  .jmodal-grid           { grid-template-columns: 1fr; }
+  .about-team            { grid-template-columns: 1fr; }
+  .about-values          { grid-template-columns: 1fr; }
+}
